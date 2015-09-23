@@ -40,9 +40,10 @@ The plan is to create a docker and docker-compose atom package which gives the u
 
 - Simple to install
 
-Usage :
+## Usage
 
 Install docker and docker-compose
+
 See the docker-compose.yml file for comments on which options should be changed to suit your needs.
 
 Start Atom Editor :
