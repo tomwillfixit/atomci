@@ -1,20 +1,20 @@
 # atomci
 
-*** This is a work in progress. ***
+*** This is a work in progress. Literally just threw this shit together. ***
 
-Aim : Use docker-compose to setup a Atom Container and CI pipeline components
+Aim : Use docker-compose to setup a Atom Editor (http://atom.io) for development and management of CI pipeline components
 
-The plan is to use docker-compose to create a complete scaled-down CI pipeline which can be managed directly from Atom.
+docker-compose simplifies the creation of a complete scaled-down CI pipeline which is portable, deployable and throwaway-able.  
 
 The Pipeline would consist of the following containers :
 
 Atom : Used as is or with pre-baked packages installed. There are a number of terminal and shell packages that allow the user to run scripts or terminal commands.  In the compose file the docker and docker-compose commands are shared into the Atom container.
 
-Build : TBD
+Build : TBD.  Includes build tools needed to create artifacts such as documentation, rpms and containers.
 
-unittest  : TBD
+unittest  : TBD. Includes all static analysis and unit test tools.
 
-systemtest  : TBD
+systemtest  : TBD. May include one or more containers which represents a environment for system testing.
 
 Jenkins Slave : TBD
 
@@ -39,3 +39,16 @@ Why use docker-compose ?
 - All container config within one file
 
 - Simple to install
+
+Usage :
+
+Install docker and docker-compose
+See the docker-compose.yml file for comments on which options should be changed to suit your needs.
+
+Start Atom Editor :
+
+```
+docker-compose up -d atom
+```
+
+When Atom is started you can install any of the terminal or shell packages.  The terminal-status package is simple to use and will allow you to run docker and docker-compose commands on the host.
