@@ -2,7 +2,7 @@
 
 *** This is a work in progress. Literally just threw this shit together. ***
 
-## Aim : Use docker-compose to setup a Atom Editor (http://atom.io) for development and management of CI pipeline components
+## Goal : Use docker-compose to setup a Atom Editor (http://atom.io) for development and management of CI pipeline components
 
 docker-compose simplifies the creation of a complete scaled-down CI pipeline which is portable, deployable and throwaway-able.  
 
