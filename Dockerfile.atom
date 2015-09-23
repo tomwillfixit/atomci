@@ -1,0 +1,39 @@
+# Atom : https://atom.io/
+
+#Build : docker build -t atom:latest -f Dockerfile.atom .
+#Start : docker run -v `pwd`:/root/.atom -v /tmp/.X11-unix:/tmp/.X11-unix \-e DISPLAY=unix$DISPLAY atom:latest
+
+#See docker-compose.yaml from extended options such as sharing in ssh keys, gitconfig etc
+
+FROM node
+MAINTAINER thshaw@demonware.net
+
+ENV ATOM_VERSION v1.0.13
+
+# Install dependencies
+
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    libasound2 \
+    libgconf-2-4 \
+    libgnome-keyring-dev \
+    libgnome-keyring-dev \
+    libgtk2.0-0 \
+    libnss3 \
+    gconf2 \
+    gconf-service \
+    libcap2 \
+    libnotify4 \
+    libxtst6 \
+    libnss3 \
+    gvfs-bin \
+    xdg-utils \
+    libxtst6 && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN curl -L https://github.com/atom/atom/releases/download/${ATOM_VERSION}/atom-amd64.deb > /tmp/atom.deb
+
+RUN dpkg -i /tmp/atom.deb && rm -f /tmp/atom.deb
+
+# Autorun atom
+CMD /usr/bin/atom --foreground --log-file /var/log/atom.log && tail -f /var/log/atom.log
+

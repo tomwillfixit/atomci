@@ -1,0 +1,52 @@
+
+#Usage :
+
+#Ensure that your host can accept X forwarded connections
+# xhost +
+
+# Start Atom 
+
+# docker-compose up -d atom
+
+# Inside Atom you can search for and install the terminal-status package.  
+# This package will allow you to run docker and docker-compose commands from Atom
+
+# When you have made code changes you could run something the following from Atom to build and test changes :
+
+# docker-compose up -d build
+
+# docker-compose up -d test
+
+# Containers
+
+atom:
+  build: .
+  dockerfile: Dockerfile.atom
+  container_name: atom
+
+  mem_limit: 1000000000
+  privileged: true
+  environment:
+    - DISPLAY=unix:0
+    - SSH_AUTH_SOCK=/tmp/ssh_auth_sock
+
+  volumes:
+    #Atom config
+    - /tmp/.X11-unix:/tmp/.X11-unix #Static - needed to display atom on your host
+    - /opt/atom:/root/.atom #Static - atom config will be persistently stored on the host
+
+    #Github and ssh config
+    - ~/.ssh:~/.ssh #Change - ssh key needed to push to github
+    - ~/.gitconfig:~/.gitconfig #Change - git config needed for user details
+    - $SSH_AUTH_SOCK:/tmp/ssh_auth_sock #Static - needed to push to github without prompt
+ 
+    #share docker and docker-compose command to atom container
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /usr/bin/docker:/usr/bin/docker
+    - /usr/local/bin/docker-compose:/bin/docker-compose
+    - /usr/lib/x86_64-linux-gnu/libapparmor.so.1.1.0:/usr/lib/x86_64-linux-gnu/libapparmor.so.1 
+
+    #Share source code from host to atom container
+    - .:/development #Static - By default shares current working directory to /development. Feel free to change.
+
+
