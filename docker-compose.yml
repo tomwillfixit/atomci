@@ -50,3 +50,17 @@ atom:
     - .:/development #Static - By default shares current working directory to /development. Feel free to change.
 
 
+jenkins:
+  image: jenkins:latest
+  container_name: jenkins
+
+  mem_limit: 1000000000
+  volumes:
+    - ./jenkins_data:/var/jenkins_home
+ 
+  ports:
+   - "8080:8080"
+
+agent:
+  build: ./slave
+
