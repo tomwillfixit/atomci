@@ -1,6 +1,6 @@
 # atomci
 
-*** This is a work in progress. Literally just threw this shit together. ***
+*** This is a work in progress. ***
 
 ## Goal : Use docker-compose to setup a Atom Editor (http://atom.io) for development and management of CI pipeline components
 
@@ -16,7 +16,7 @@ unittest  : TBD. Includes all static analysis and unit test tools.
 
 systemtest  : TBD. May include one or more containers which represents a environment for system testing.
 
-Jenkins Slave : TBD
+Jenkins Master : docker-compose run -d jenkins
 
  
 ## What is the point of creating a scaled-down CI infrastructure ?
