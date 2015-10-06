@@ -49,6 +49,7 @@ atom:
     #Share source code from host to atom container
     - .:/development #Static - By default shares current working directory to /development. Feel free to change.
 
+#you will need to chmod ./jenkins_data or run the container as privileged
 
 jenkins:
   image: jenkins:latest
@@ -61,6 +62,6 @@ jenkins:
   ports:
    - "8080:8080"
 
-agent:
-  build: ./slave
+#agent:
+  #build: ./slave
 
